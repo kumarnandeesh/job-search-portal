@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JobPortal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JobPortal</div>
+        <div class="nav-links">
+            <a href="dashboard.html">Jobs</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" onclick="logout()">Logout</a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <div id="userNav"></div>
+        </div>
+    </nav>
+    
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Find Your Perfect Job</h1>
+            
+            <div class="search-filter-section">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search by job title, company, location, or skills..." oninput="searchJobs()">
+                    <button onclick="searchJobs()">Search</button>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="locationFilter">Location:</label>
+                        <select id="locationFilter" onchange="searchJobs()">
+                            <option value="">All Locations</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Mumbai">Mumbai</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="salaryFilter">Min Salary:</label>
+                        <select id="salaryFilter" onchange="searchJobs()">
+                            <option value="">Any Salary</option>
+                            <option value="500000">₹5 LPA+</option>
+                            <option value="1000000">₹10 LPA+</option>
+                            <option value="1500000">₹15 LPA+</option>
+                            <option value="2000000">₹20 LPA+</option>
+                            <option value="2500000">₹25 LPA+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="modeFilter">Work Mode:</label>
+                        <select id="modeFilter" onchange="searchJobs()">
+                            <option value="">All Modes</option>
+                            <option value="On-site">On-site</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    
+                    <button class="clear-filters" onclick="clearFilters()">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+        
+        <p id="resultsCount" class="results-count"></p>
+        
+        <div id="jobContainer" class="job-grid">
+            <!-- Jobs will be rendered here -->
+        </div>
+    </div>
+    
+    <script src="script/app.js"></script>
+    <script>
+        // Check authentication
+        if (!requireAuth()) {
+            // Will redirect to index.html
+        } else {
+            initTheme();
+            updateNav();
+            renderJobs(jobData);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobPortal - Find Your Dream Job</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JobPortal</div>
+        <div class="nav-links">
+            <a href="index.html">Login</a>
+            <a href="index.html#signup" class="btn-nav">Get Started</a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your <span class="highlight">Dream Job</span> Today</h1>
+            <p class="hero-tagline">Connect with top companies and discover opportunities that match your skills, experience, and career goals.</p>
+            <p class="hero-message">Join thousands of professionals who have found their perfect career through JobPortal. Whether you're a fresher or an experienced professional, we have the right opportunity waiting for you.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">Active Jobs</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5K+</span>
+                    <span class="stat-label">Companies</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Job Seekers</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="index.html#signup" class="btn btn-primary">Create Account</a>
+                <a href="index.html" class="btn btn-outline">Login</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-graphic">
+                <div class="floating-card card-1">
+                    <span class="card-icon">💼</span>
+                    <span>500+ New Jobs Daily</span>
+                </div>
+                <div class="floating-card card-2">
+                    <span class="card-icon">🎯</span>
+                    <span>Smart Job Matching</span>
+                </div>
+                <div class="floating-card card-3">
+                    <span class="card-icon">🚀</span>
+                    <span>Fast Apply</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Why Choose JobPortal?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🔍</span>
+                <h3>Smart Search</h3>
+                <p>Find jobs by title, company, location, or skills with our powerful search.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Salary Insights</h3>
+                <p>Get transparent salary information for every job listing.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🏢</span>
+                <h3>Top Companies</h3>
+                <p>Connect with leading companies across India.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Quick Apply</h3>
+                <p>Apply to multiple jobs with just one click.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 JobPortal. All rights reserved.</p>
+    </footer>
+
+    <script src="script/app.js"></script>
+    <script>
+        // Check if already logged in
+        if (isLoggedIn()) {
+            window.location.href = 'dashboard.html';
+        }
+        initTheme();
+    </script>
+</body>
+</html>

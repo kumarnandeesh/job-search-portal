@@ -1,0 +1,182 @@
+[
+  {
+    "organization": "Infosys",
+    "role": "Frontend Developer",
+    "location": "Bangalore",
+    "mode": "Onsite",
+    "salaryRange": "5-8 LPA",
+    "experience": "1-3 years",
+    "education": "B.Tech / B.E in Computer Science or related field"
+  },
+  {
+    "organization": "Wipro",
+    "role": "Backend Developer",
+    "location": "Bangalore",
+    "mode": "Hybrid",
+    "salaryRange": "6-10 LPA",
+    "experience": "2-4 years",
+    "education": "B.Tech / MCA"
+  },
+  {
+    "organization": "Flipkart",
+    "role": "Software Engineer",
+    "location": "Bangalore",
+    "mode": "Onsite",
+    "salaryRange": "10-18 LPA",
+    "experience": "2-5 years",
+    "education": "B.Tech in CS/IT"
+  },
+  {
+    "organization": "Razorpay",
+    "role": "Full Stack Developer",
+    "location": "Bangalore",
+    "mode": "Remote",
+    "salaryRange": "12-20 LPA",
+    "experience": "3-5 years",
+    "education": "B.Tech / M.Tech"
+  },
+  {
+    "organization": "TCS",
+    "role": "System Engineer",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "salaryRange": "4-7 LPA",
+    "experience": "0-2 years",
+    "education": "B.Sc / B.Tech"
+  },
+  {
+    "organization": "Accenture",
+    "role": "Cloud Engineer",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "salaryRange": "8-14 LPA",
+    "experience": "2-4 years",
+    "education": "B.Tech / MCA"
+  },
+  {
+    "organization": "Jio Platforms",
+    "role": "DevOps Engineer",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "salaryRange": "9-16 LPA",
+    "experience": "3-6 years",
+    "education": "B.Tech / M.Tech"
+  },
+  {
+    "organization": "Capgemini",
+    "role": "QA Engineer",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "salaryRange": "5-9 LPA",
+    "experience": "1-3 years",
+    "education": "B.Tech / BCA / MCA"
+  },
+  {
+    "organization": "Microsoft",
+    "role": "Software Developer",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "salaryRange": "18-30 LPA",
+    "experience": "3-6 years",
+    "education": "B.Tech / M.Tech in CS"
+  },
+  {
+    "organization": "Amazon",
+    "role": "Data Engineer",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "salaryRange": "15-25 LPA",
+    "experience": "2-5 years",
+    "education": "B.Tech / M.Tech / MS"
+  },
+  {
+    "organization": "Deloitte",
+    "role": "Business Analyst",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "salaryRange": "7-12 LPA",
+    "experience": "2-4 years",
+    "education": "MBA / B.Tech"
+  },
+  {
+    "organization": "Tech Mahindra",
+    "role": "Java Developer",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "salaryRange": "6-11 LPA",
+    "experience": "2-5 years",
+    "education": "B.Tech / MCA"
+  },
+  {
+    "organization": "Zoho",
+    "role": "Product Engineer",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "salaryRange": "8-14 LPA",
+    "experience": "1-3 years",
+    "education": "B.E / B.Tech"
+  },
+  {
+    "organization": "Freshworks",
+    "role": "UI/UX Designer",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "salaryRange": "6-12 LPA",
+    "experience": "2-4 years",
+    "education": "Bachelor’s in Design / CS"
+  },
+  {
+    "organization": "Cognizant",
+    "role": "Data Analyst",
+    "location": "Chennai",
+    "mode": "Remote",
+    "salaryRange": "5-9 LPA",
+    "experience": "1-3 years",
+    "education": "B.Sc / B.Tech / Statistics"
+  },
+  {
+    "organization": "PayPal",
+    "role": "Security Engineer",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "salaryRange": "14-22 LPA",
+    "experience": "3-6 years",
+    "education": "B.Tech / M.Tech in Cybersecurity"
+  },
+  {
+    "organization": "Google",
+    "role": "Site Reliability Engineer",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "salaryRange": "20-35 LPA",
+    "experience": "4-7 years",
+    "education": "B.Tech / M.Tech"
+  },
+  {
+    "organization": "IBM",
+    "role": "AI Engineer",
+    "location": "Pune",
+    "mode": "Remote",
+    "salaryRange": "12-20 LPA",
+    "experience": "2-5 years",
+    "education": "B.Tech / M.Tech / AI Specialization"
+  },
+  {
+    "organization": "Persistent Systems",
+    "role": "React Developer",
+    "location": "Pune",
+    "mode": "Onsite",
+    "salaryRange": "7-13 LPA",
+    "experience": "2-4 years",
+    "education": "B.Tech / BCA / MCA"
+  },
+  {
+    "organization": "Infosys",
+    "role": "Python Developer",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "salaryRange": "6-10 LPA",
+    "experience": "1-3 years",
+    "education": "B.Tech / B.Sc / MCA"
+  }
+]

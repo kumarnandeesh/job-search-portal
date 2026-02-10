@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details - JobPortal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">JobPortal</div>
+        <div class="nav-links">
+            <a href="dashboard.html">Jobs</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" onclick="logout()">Logout</a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <div id="userNav"></div>
+        </div>
+    </nav>
+
+    <div class="job-detail-container">
+        <a href="dashboard.html" class="back-link">← Back to Jobs</a>
+        
+        <div class="job-detail-card" id="jobDetailCard">
+            <!-- Job details will be rendered here -->
+        </div>
+    </div>
+
+    <script src="script/app.js"></script>
+    <script>
+        if (requireAuth()) {
+            initTheme();
+            updateNav();
+            renderJobDetail();
+        }
+    </script>
+</body>
+</html>
