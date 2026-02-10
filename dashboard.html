@@ -13,6 +13,7 @@
         <!-- Desktop Navigation -->
         <div class="nav-links nav-links-desktop">
             <a href="dashboard.html">Jobs</a>
+            <button class="btn-post-job" onclick="openJobModal()">➕ Post Job</button>
             <a href="profile.html">Profile</a>
             <a href="#" onclick="logout()">Logout</a>
             <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
@@ -23,6 +24,7 @@
         
         <!-- Mobile Navigation -->
         <div class="nav-links nav-links-mobile">
+            <button class="btn-post-job-mobile" onclick="openJobModal()" title="Post Job">➕</button>
             <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
                 <span class="theme-icon">🌙</span>
             </button>
@@ -31,6 +33,9 @@
                     <div class="nav-avatar" id="mobileAvatar">?</div>
                 </div>
                 <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-header" id="dropdownUserName">User</div>
+                    <div class="dropdown-divider"></div>
+                    <button onclick="openJobModal()">➕ Post Job</button>
                     <a href="dashboard.html">💼 Jobs</a>
                     <a href="profile.html">👤 Profile</a>
                     <div class="dropdown-divider"></div>
@@ -40,6 +45,73 @@
         </div>
     </nav>
     
+    <!-- Add Job Modal -->
+    <div class="modal-overlay" id="jobModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Post a Job Opening</h2>
+                <button class="modal-close" onclick="closeJobModal()">&times;</button>
+            </div>
+            <form onsubmit="submitJob(event)">
+                <div class="form-group">
+                    <label for="jobTitle">Job Title *</label>
+                    <input type="text" id="jobTitle" required placeholder="e.g., Frontend Developer">
+                </div>
+                <div class="form-group">
+                    <label for="jobCompany">Company Name *</label>
+                    <input type="text" id="jobCompany" required placeholder="e.g., TCS Digital">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobLocation">Location *</label>
+                        <select id="jobLocation" required>
+                            <option value="">Select Location</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Mumbai">Mumbai</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobMode">Work Mode *</label>
+                        <select id="jobMode" required>
+                            <option value="">Select Mode</option>
+                            <option value="On-site">On-site</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobType">Job Type *</label>
+                        <select id="jobType" required>
+                            <option value="">Select Type</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobSalary">Salary (LPA) *</label>
+                        <input type="number" id="jobSalary" required placeholder="e.g., 12" min="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="jobDescription">Job Description *</label>
+                    <textarea id="jobDescription" required placeholder="Describe the role and responsibilities..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="jobRequirements">Required Skills (comma-separated) *</label>
+                    <input type="text" id="jobRequirements" required placeholder="e.g., React, JavaScript, CSS">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeJobModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Post Job</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="dashboard-container">
         <div class="dashboard-header">
             <h1>Find Your Perfect Job</h1>
@@ -104,8 +176,15 @@
             initTheme();
             updateNav();
             updateMobileAvatar();
-            renderJobs(jobData);
+            renderJobs(getAllJobs());
         }
+        
+        // Close modal when clicking overlay
+        document.getElementById('jobModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeJobModal();
+            }
+        });
         
         // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {

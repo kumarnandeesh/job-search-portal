@@ -367,11 +367,15 @@ function renderJobs(jobs) {
     jobs.forEach(job => {
         const card = document.createElement('div');
         card.className = 'job-card';
-        card.onclick = () => viewJob(job.id);
+        card.onclick = () => viewJob(job.id, job.isUserPosted);
+        const userBadge = job.isUserPosted ? '<span class="user-posted-badge">Your Post</span>' : '';
         card.innerHTML = `
             <div class="job-header">
                 <h3 class="job-title">${job.title}</h3>
-                <span class="job-type ${job.mode.toLowerCase()}">${job.mode}</span>
+                <div class="job-badges">
+                    ${userBadge}
+                    <span class="job-type ${job.mode.toLowerCase()}">${job.mode}</span>
+                </div>
             </div>
             <p class="job-company">${job.company}</p>
             <div class="job-meta">
@@ -384,7 +388,7 @@ function renderJobs(jobs) {
             </div>
             <div class="job-footer">
                 <span class="job-posted">Posted: ${job.posted}</span>
-                <button class="view-btn" onclick="event.stopPropagation(); viewJob(${job.id})">View Details</button>
+                <button class="view-btn" onclick="event.stopPropagation(); viewJob(${job.id}, ${job.isUserPosted || false})">View Details</button>
             </div>
         `;
         container.appendChild(card);
@@ -392,15 +396,26 @@ function renderJobs(jobs) {
 }
 
 // View job details
-function viewJob(jobId) {
+function viewJob(jobId, isUserPosted = false) {
     localStorage.setItem('selectedJobId', jobId);
+    localStorage.setItem('isUserPosted', isUserPosted);
     window.location.href = 'job-detail.html';
 }
 
 // Render job detail page
 function renderJobDetail() {
     const jobId = parseInt(localStorage.getItem('selectedJobId'));
-    const job = jobData.find(j => j.id === jobId);
+    const isUserPosted = localStorage.getItem('isUserPosted') === 'true';
+    
+    // Search in appropriate array
+    let job;
+    if (isUserPosted) {
+        const userJobs = getUserJobs();
+        job = userJobs.find(j => j.id === jobId);
+    } else {
+        job = jobData.find(j => j.id === jobId);
+    }
+    
     const container = document.getElementById('jobDetailCard');
     
     if (!job || !container) {
@@ -458,7 +473,8 @@ function searchJobs() {
     const salaryFilter = document.getElementById('salaryFilter')?.value || '';
     const modeFilter = document.getElementById('modeFilter')?.value || '';
     
-    const filtered = jobData.filter(job => {
+    const allJobs = getAllJobs();
+    const filtered = allJobs.filter(job => {
         // Search across all fields
         const matchesSearch = !searchTerm || 
             job.title.toLowerCase().includes(searchTerm) ||
@@ -492,7 +508,7 @@ function clearFilters() {
     document.getElementById('locationFilter').value = '';
     document.getElementById('salaryFilter').value = '';
     document.getElementById('modeFilter').value = '';
-    renderJobs(jobData);
+    renderJobs(getAllJobs());
 }
 
 // Apply for job
@@ -533,11 +549,17 @@ function updateNav() {
     }
 }
 
-// Update mobile avatar
+// Update mobile avatar and dropdown user name
 function updateMobileAvatar() {
     const mobileAvatar = document.getElementById('mobileAvatar');
+    const dropdownUserName = document.getElementById('dropdownUserName');
+    
     if (mobileAvatar && isLoggedIn()) {
         mobileAvatar.textContent = getUserInitial();
+    }
+    
+    if (dropdownUserName && isLoggedIn()) {
+        dropdownUserName.textContent = currentUser.name;
     }
 }
 
@@ -547,4 +569,83 @@ function toggleDropdown() {
     if (dropdown) {
         dropdown.classList.toggle('show');
     }
+}
+
+// Get user-posted jobs from localStorage
+function getUserJobs() {
+    const userJobs = localStorage.getItem('userJobs');
+    return userJobs ? JSON.parse(userJobs) : [];
+}
+
+// Save user jobs to localStorage
+function saveUserJobs(jobs) {
+    localStorage.setItem('userJobs', JSON.stringify(jobs));
+}
+
+// Get all jobs (default + user-posted)
+function getAllJobs() {
+    const userJobs = getUserJobs();
+    return [...userJobs, ...jobData];
+}
+
+// Open job modal
+function openJobModal() {
+    const modal = document.getElementById('jobModal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    // Close dropdown if open
+    const dropdown = document.getElementById('dropdownMenu');
+    if (dropdown) {
+        dropdown.classList.remove('show');
+    }
+}
+
+// Close job modal
+function closeJobModal() {
+    const modal = document.getElementById('jobModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+        // Reset form
+        modal.querySelector('form').reset();
+    }
+}
+
+// Submit new job
+function submitJob(e) {
+    e.preventDefault();
+    
+    const salaryValue = parseInt(document.getElementById('jobSalary').value);
+    const salaryMin = salaryValue * 100000;
+    const salaryDisplay = `\u20b9${salaryValue},00,000 - \u20b9${salaryValue + 5},00,000`;
+    
+    const newJob = {
+        id: Date.now(), // Unique ID based on timestamp
+        title: document.getElementById('jobTitle').value,
+        company: document.getElementById('jobCompany').value,
+        location: document.getElementById('jobLocation').value,
+        type: document.getElementById('jobType').value,
+        mode: document.getElementById('jobMode').value,
+        salary: salaryDisplay,
+        salaryMin: salaryMin,
+        description: document.getElementById('jobDescription').value,
+        requirements: document.getElementById('jobRequirements').value.split(',').map(s => s.trim()).filter(s => s),
+        responsibilities: ["As per job description"],
+        posted: new Date().toISOString().split('T')[0],
+        postedBy: currentUser ? currentUser.name : 'Anonymous',
+        isUserPosted: true
+    };
+    
+    // Get existing user jobs and add new one
+    const userJobs = getUserJobs();
+    userJobs.unshift(newJob); // Add to beginning
+    saveUserJobs(userJobs);
+    
+    // Close modal and refresh jobs
+    closeJobModal();
+    renderJobs(getAllJobs());
+    
+    alert('Job posted successfully!');
 }
