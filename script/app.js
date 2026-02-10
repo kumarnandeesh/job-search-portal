@@ -532,3 +532,19 @@ function updateNav() {
         `;
     }
 }
+
+// Update mobile avatar
+function updateMobileAvatar() {
+    const mobileAvatar = document.getElementById('mobileAvatar');
+    if (mobileAvatar && isLoggedIn()) {
+        mobileAvatar.textContent = getUserInitial();
+    }
+}
+
+// Toggle dropdown menu
+function toggleDropdown() {
+    const dropdown = document.getElementById('dropdownMenu');
+    if (dropdown) {
+        dropdown.classList.toggle('show');
+    }
+}

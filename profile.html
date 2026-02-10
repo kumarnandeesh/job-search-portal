@@ -9,7 +9,9 @@
 <body>
     <nav class="navbar">
         <div class="logo">JobPortal</div>
-        <div class="nav-links">
+        
+        <!-- Desktop Navigation -->
+        <div class="nav-links nav-links-desktop">
             <a href="dashboard.html">Jobs</a>
             <a href="profile.html">Profile</a>
             <a href="#" onclick="logout()">Logout</a>
@@ -17,6 +19,24 @@
                 <span class="theme-icon">🌙</span>
             </button>
             <div id="userNav"></div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="nav-links nav-links-mobile">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <div class="profile-dropdown">
+                <div class="profile-trigger" onclick="toggleDropdown()">
+                    <div class="nav-avatar" id="mobileAvatar">?</div>
+                </div>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="dashboard.html">💼 Jobs</a>
+                    <a href="profile.html">👤 Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+                </div>
+            </div>
         </div>
     </nav>
     
@@ -64,8 +84,18 @@
         if (requireAuth()) {
             initTheme();
             updateNav();
+            updateMobileAvatar();
             renderProfile();
         }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('dropdownMenu');
+            const trigger = document.querySelector('.profile-trigger');
+            if (dropdown && !dropdown.contains(e.target) && !trigger.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
